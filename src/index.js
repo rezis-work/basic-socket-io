@@ -14,6 +14,12 @@ app.get("/", (req, res) => res.sendFile(join(__dirname, "index.html")));
 io.on("connection", (client) => {
   console.log("User connected to (Server)");
 
+  client.emit("welcome", "Welcome to the server");
+
+  client.on("client message", (message) => {
+    console.log(message);
+  });
+
   client.on("disconnect", () => {
     console.log("User disconnected from (Server)");
   });
