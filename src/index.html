@@ -14,6 +14,13 @@
 
       socket.on("connect", () => {
         console.log("Connected to (Client)");
+        setTimeout(() => {
+          socket.disconnect();
+        }, 5000);
+      });
+
+      socket.on("disconnect", () => {
+        console.log("Disconnected from (Client)");
       });
     </script>
   </body>

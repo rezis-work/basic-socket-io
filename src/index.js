@@ -11,9 +11,12 @@ const io = new Server(server);
 const __dirname = dirname(fileURLToPath(import.meta.url));
 app.get("/", (req, res) => res.sendFile(join(__dirname, "index.html")));
 
-io.on("connection", (socket) => {
+io.on("connection", (client) => {
   console.log("User connected to (Server)");
-  // console.log(socket);
+
+  client.on("disconnect", () => {
+    console.log("User disconnected from (Server)");
+  });
 });
 
 const PORT = process.env.PORT || 5000;
